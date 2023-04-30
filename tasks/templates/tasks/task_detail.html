@@ -17,9 +17,10 @@
     </div>
 
 </div>
-
+{% if request.user == task.author %}
 <p><a href="{% url 'task_edit' task.pk %}">Edit</a> | <a href="{% url 'task_delete' task.pk %}">Delete</a></p>
 <p>Back to <a href="{% url 'task_list' %}">All Tasks</a>.</p>
+{% endif %}
 
 
 {% endblock %}

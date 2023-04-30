@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% load task_tag %}
+
+{% block title %} Draft Tasks {% endblock %}
+
+{% block content %}
+{% get_all_draft_tasks as draft_tasks %}
+{% for task in draft_tasks %}
+<div class="card">
+    <div class="card-header">
+        <a href="{% url 'task_detail' task.pk %}">{{task.title}}</a></span> &middot;
+        <span class="text-muted">by {{task.author}} | {{task.date}}</span>
+    </div>
+    <div class="card-body">
+        {{task.body}}
+        <a href="{% url 'task_edit' task.pk %}">Edit</a> |
+        <a href="{% url 'task_delete' task.pk %}">Delete</a> |
+    </div>
+</div>
+<br>
+{% endfor %}
+
+{% endblock %}

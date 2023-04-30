@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+
+
+{% block title %} Tasks {% endblock %}
+
+{% block content %}
+
+<br><br>
+<div class="main">
+    <h3>{{name_category.name}}</h3><br>
+    <h5>Count: {{count_task}}</h2>
+        {% for task in object_list %}
+        <div class="card">
+            <div class="card-header">
+                <a href="{% url 'task_detail' task.pk %}">{{task.title}}</a></span> &middot;
+                <span class="text-muted">by {{task.author}} | {{task.date}}</span>
+            </div>
+            <div class="card-body">
+                {{task.body}}
+                <a href="{% url 'task_edit' task.pk %}">Edit</a> |
+                <a href="{% url 'task_delete' task.pk %}">Delete</a> |
+            </div>
+        </div>
+        <br>
+        {% endfor %}
+
+</div>
+
+
+{% endblock %}

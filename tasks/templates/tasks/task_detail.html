@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+<div class="task-entry">
+    <h2>{{object.title}}</h2>
+    <p> by {{object.author}} | {{object.created_at}}</p>
+    <p>{{object.body}}</p>
+    <p>Execute at: {{object.execute_at}}</p>
+    <div class="form-status">
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Save</button>
+        </form>
+    </div>
+
+</div>
+
+<p><a href="{% url 'task_edit' task.pk %}">Edit</a> | <a href="{% url 'task_delete' task.pk %}">Delete</a></p>
+<p>Back to <a href="{% url 'task_list' %}">All Tasks</a>.</p>
+
+
+{% endblock %}
